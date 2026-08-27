@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BEM Internal Dashboard - BLM FIK</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d9e3f9",
+                        "secondary-container": "#fed65b",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary-fixed": "#121c2c",
+                        "background": "#f7f9fb",
+                        "on-secondary-fixed": "#241a00",
+                        "inverse-primary": "#adc7f7",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "success-emerald": "#10b981",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-primary-container": "#86a0cd",
+                        "on-surface-variant": "#43474e",
+                        "secondary": "#735c00",
+                        "on-primary-fixed": "#001b3c",
+                        "primary": "#002045",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary-fixed-variant": "#574500",
+                        "slate-text": "#1e293b",
+                        "surface-container": "#eceef0",
+                        "secondary-fixed-dim": "#e9c349",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "error-rose": "#e11d48",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "inverse-surface": "#2d3133",
+                        "surface-bright": "#f7f9fb",
+                        "info-blue": "#3b82f6",
+                        "primary-fixed": "#d6e3ff",
+                        "primary-container": "#1a365d",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "secondary-fixed": "#ffe088",
+                        "surface": "#f7f9fb",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#2c3647",
+                        "warning-amber": "#f59e0b",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#745c00",
+                        "outline-variant": "#c4c6cf",
+                        "primary-fixed-dim": "#adc7f7",
+                        "surface-dim": "#d8dadc",
+                        "outline": "#74777f",
+                        "surface-tint": "#455f88",
+                        "on-tertiary-container": "#959fb3",
+                        "on-background": "#191c1e",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary": "#172131",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "base": "4px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "max-width": "1280px",
+                        "2xl": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "display": ["Geist"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #f7f9fb; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar Component (Desktop Only) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 bg-surface border-r border-outline-variant p-md z-40 bg-surface dark:bg-surface-dim text-primary dark:text-primary-fixed-dim font-label-md text-label-md flat no shadows">
+<div class="mb-lg">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">BLM Dashboard</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Legislative Admin</p>
+</div>
+<ul class="flex-1 space-y-2">
+<li>
+<a class="flex items-center gap-3 bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-lg px-4 py-3 scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Overview
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+                    Programs/Aspirations
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+                    Audit
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<div class="mt-auto">
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 h-full overflow-y-auto p-margin-mobile md:p-margin-desktop bg-background">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-lg gap-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Executive Dashboard</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">BEM Internal Program Management</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-DEFAULT font-label-md hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Add/Update Program
+            </button>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Budgets & Documents (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<!-- Budget Management Card -->
+<section class="glass-panel rounded-xl p-lg">
+<h3 class="font-headline-sm text-headline-sm text-slate-text border-b border-outline-variant pb-sm mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">payments</span>
+                        Budget Management
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-xs">Total Budget (IDR)</label>
+<input class="w-full border border-outline-variant rounded-DEFAULT p-sm font-headline-sm text-headline-sm text-slate-text bg-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="text" value="Rp 50.000.000"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-xs">Budget Spent (IDR)</label>
+<input class="w-full border border-outline-variant rounded-DEFAULT p-sm font-headline-sm text-headline-sm text-slate-text bg-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="text" value="Rp 12.500.000"/>
+<div class="mt-xs text-right font-label-sm text-success-emerald">25% Utilized</div>
+</div>
+</div>
+<!-- Visual Progress Bar -->
+<div class="mt-md w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 25%"></div>
+</div>
+</section>
+<!-- Document Upload Center -->
+<section class="glass-panel rounded-xl p-lg">
+<h3 class="font-headline-sm text-headline-sm text-slate-text border-b border-outline-variant pb-sm mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+                        Document Center
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Dropzone 1 -->
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-md text-center hover:border-primary hover:bg-surface-container-low transition-colors cursor-pointer flex flex-col items-center justify-center min-h-[120px]">
+<span class="material-symbols-outlined text-on-surface-variant mb-xs">description</span>
+<span class="font-label-md text-label-md text-slate-text block">PDF Proposal</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-xs">Drag &amp; Drop or Click</span>
+</div>
+<!-- Dropzone 2 -->
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-md text-center hover:border-primary hover:bg-surface-container-low transition-colors cursor-pointer flex flex-col items-center justify-center min-h-[120px]">
+<span class="material-symbols-outlined text-on-surface-variant mb-xs">task</span>
+<span class="font-label-md text-label-md text-slate-text block">PDF LPJ</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-xs">Pending Review</span>
+</div>
+<!-- Dropzone 3 -->
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-md text-center hover:border-primary hover:bg-surface-container-low transition-colors cursor-pointer flex flex-col items-center justify-center min-h-[120px]">
+<span class="material-symbols-outlined text-on-surface-variant mb-xs">receipt_long</span>
+<span class="font-label-md text-label-md text-slate-text block">Raw Receipts</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-xs">ZIP or PDF</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Evaluation Log (4 cols) -->
+<div class="lg:col-span-4 h-full">
+<section class="glass-panel rounded-xl h-full flex flex-col">
+<div class="p-md border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-slate-text flex items-center gap-2">
+<span class="material-symbols-outlined text-warning-amber">history_edu</span>
+                            Evaluation Log
+                        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Notes from BLM</p>
+</div>
+<div class="p-md flex-1 overflow-y-auto space-y-md">
+<!-- Log Item 1 -->
+<div class="bg-surface p-sm rounded-DEFAULT border border-outline-variant">
+<div class="flex justify-between items-start mb-xs">
+<span class="bg-error-container text-on-error-container font-label-sm px-2 py-1 rounded-sm uppercase">Revision Required</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">Today, 10:30 AM</span>
+</div>
+<p class="font-body-md text-body-md text-slate-text">Budget details for 'Konsumsi' exceed the standard limit. Please revise the LPJ.</p>
+</div>
+<!-- Log Item 2 -->
+<div class="bg-surface p-sm rounded-DEFAULT border border-outline-variant">
+<div class="flex justify-between items-start mb-xs">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm px-2 py-1 rounded-sm uppercase">Note</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">Yesterday, 14:15 PM</span>
+</div>
+<p class="font-body-md text-body-md text-slate-text">Proposal approved. Ensure timeline aligns with the academic calendar.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>
